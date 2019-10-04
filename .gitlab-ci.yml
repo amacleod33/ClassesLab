@@ -1,0 +1,101 @@
+# This file is a template, and might need editing before it works on your project.
+# This is the Gradle build system for JVM applications
+# https://gradle.org/
+# https://github.com/gradle/gradle
+
+stages:
+  - first
+  - second
+
+# Disable the Gradle daemon for Continuous Integration servers as correctness
+# is usually a priority over speed in CI environments. Using a fresh
+# runtime for each build is more reliable since the runtime is completely
+# isolated from any previous builds.
+variables:
+  GRADLE_OPTS: "-Dorg.gradle.daemon=false"
+
+before_script:
+  - export GRADLE_USER_HOME=`pwd`/Gradle/.gradle
+
+compile:
+  stage: first
+  tags:
+  - gradle:5.5-jdk11
+  script:
+  - cd Gradle
+  - gradle --build-cache assemble
+
+test:
+  stage: second
+  tags:
+  - gradle:5.5-jdk11
+  script:
+  - cd Gradle
+  - gradle test
+
+webcat_variable:
+  stage: first
+  variables:
+    WEBCATTARGET: "CPSC 255/Week-05-GitLab-Variable"
+    WEBCATTITLE: ""
+    SRCFILES: "Variable.java"
+  script:
+  - cd WebCAT
+  - 'if [[ -z "$WCUSER" ]]; then'
+  - '  echo "WCUSER value is not set";'
+  - '  exit 1;'
+  - 'else'
+  - '  echo "$WCUSER" > login.txt;'
+  - 'fi'
+  - 'if [[ -z "$WCPASS" ]]; then'
+  - '  echo "WCPASS value is not set";'
+  - '  exit 1;'
+  - 'else'
+  - '  echo "$WCPASS" >> login.txt;'
+  - 'fi'
+  - 'python3 webcat-submitter.py "$WEBCATTARGET" "$WEBCATTITLE" $SRCFILES'
+
+webcat_alu:
+  stage: first
+  variables:
+    WEBCATTARGET: "CPSC 255/Week-05-GitLab-Alu"
+    WEBCATTITLE: ""
+    SRCFILES: "Alu.java"
+  script:
+  - cd WebCAT
+  - 'if [[ -z "$WCUSER" ]]; then'
+  - '  echo "WCUSER value is not set";'
+  - '  exit 1;'
+  - 'else'
+  - '  echo "$WCUSER" > login.txt;'
+  - 'fi'
+  - 'if [[ -z "$WCPASS" ]]; then'
+  - '  echo "WCPASS value is not set";'
+  - '  exit 1;'
+  - 'else'
+  - '  echo "$WCPASS" >> login.txt;'
+  - 'fi'
+  - 'python3 webcat-submitter.py "$WEBCATTARGET" "$WEBCATTITLE" $SRCFILES'
+
+webcat_mu:
+  stage: first
+  variables:
+    WEBCATTARGET: "CPSC 255/Week-05-GitLab-Mu"
+    WEBCATTITLE: ""
+    SRCFILES: "Mu.java"
+  script:
+  - cd WebCAT
+  - 'if [[ -z "$WCUSER" ]]; then'
+  - '  echo "WCUSER value is not set";'
+  - '  exit 1;'
+  - 'else'
+  - '  echo "$WCUSER" > login.txt;'
+  - 'fi'
+  - 'if [[ -z "$WCPASS" ]]; then'
+  - '  echo "WCPASS value is not set";'
+  - '  exit 1;'
+  - 'else'
+  - '  echo "$WCPASS" >> login.txt;'
+  - 'fi'
+  - 'python3 webcat-submitter.py "$WEBCATTARGET" "$WEBCATTITLE" $SRCFILES'
+  
