@@ -12,17 +12,6 @@ public class Variable {
     private Integer variable_data;
 
     /**
-     * Create a new Variable object.
-     */
-    public Variable() {
-
-        String variable_id = "No id";
-        Integer variable_data = -1;
-
-    }
-
-
-    /**
      * Create a new Variable object with params.
      * 
      * @param id
@@ -93,7 +82,7 @@ public class Variable {
      *            main arguments
      */
     public static void main(String[] args) {
-
+        //empty for tests
     }
 
 }
