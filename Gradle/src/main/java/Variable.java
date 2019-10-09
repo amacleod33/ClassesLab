@@ -8,8 +8,8 @@
  */
 public class Variable {
 
-    private String  variable_id;
-    private Integer variable_data;
+    private String  variableId;
+    private Integer variableData;
 
     /**
      * Create a new Variable object with params.
@@ -20,8 +20,8 @@ public class Variable {
      *            data in variable
      */
     public Variable(String id, Integer data) {
-        variable_id = id;
-        variable_data = data;
+        variableId = id;
+        variableData = data;
     }
 
 
@@ -31,7 +31,7 @@ public class Variable {
      * @return id of variable
      */
     public String getIdentifier() {
-        return variable_id;
+        return variableId;
     }
 
 
@@ -42,7 +42,7 @@ public class Variable {
      *            id of variable
      */
     public void setIdentifier(String id) {
-        variable_id = id;
+        variableId = id;
     }
 
 
@@ -52,7 +52,7 @@ public class Variable {
      * @return variable_data
      */
     public Integer getData() {
-        return variable_data;
+        return variableData;
     }
 
 
@@ -63,7 +63,7 @@ public class Variable {
      *            variable data
      */
     public void setData(Integer data) {
-        variable_data = data;
+        variableData = data;
     }
 
 
@@ -71,7 +71,7 @@ public class Variable {
      * prints variable id and variable data in a string {@inheritDoc}
      */
     public String toString() {
-        return variable_id + String.valueOf(variable_data);
+        return variableId + String.valueOf(variableData);
     }
 
 
